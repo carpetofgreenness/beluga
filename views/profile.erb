@@ -29,7 +29,7 @@
 	  <textarea name="body" rows="4" cols="50"></textarea>
 	  <br><br>
 	  <label for="tag">Tag</label>
-	  <input type="number" name="tag">
+	  <input type="number" name="tag" min="1" max=<%=Tag.count%>>
 	  <br><br>
 	  <button type="submit">Post!</button>
 	</form>
