@@ -6,6 +6,8 @@
 <img src=<%=@user.pic%>>
 
 <% if session[:user_id] && session[:user_id]==@user.id%> 
+	<br>
+	<form method="post"><button formaction="/user/<%=@user.id %>/delete" type="submit">Delete User</button></form>
 	<h2>New Post:</h2>
 	<form method="POST" action="/post/new">
 	  <label for="url">URL</label>

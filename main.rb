@@ -90,7 +90,11 @@ post "/user/new" do
   redirect "/profile/#{@user.id}"
 end
 
-
+post "/user/:id/delete" do
+  User.find(params[:id]).destroy
+  session.clear
+  redirect "/"
+end
 
 
 
