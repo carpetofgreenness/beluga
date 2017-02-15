@@ -76,7 +76,10 @@ end
 
 # hannah's section
 
-
+get "/users" do
+  @users = User.all
+  erb :users
+end
 
 
 

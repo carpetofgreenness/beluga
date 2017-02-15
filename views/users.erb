@@ -1,0 +1,14 @@
+<h1>All Users:</h1>
+<ul>
+	<% @users.each do |user| %>
+		<li>
+			Name: <%=user.username%>
+			<br>
+			Email: <%=user.email%>
+			<br>
+			Description: <%=user.description%>
+			<br>
+			<img src=<%=user.pic%>>
+		</li>
+	<% end %>
+</ul>
