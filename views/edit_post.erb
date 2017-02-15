@@ -1,0 +1,16 @@
+<h2>Edit Post <%=@post.title%></h2>
+<form method="POST" action="/post/edit/<%=@post.id%>">
+  <label for="url">URL</label>
+  <input type="text" name="url" value=<%=@post.url%>>
+  <br><br>
+  <label for="title">Title</label>
+  <input type="text" name="title" value=<%=@post.title%>>
+  <br><br>
+  <label for="body">Body</label>
+  <textarea name="body" rows="4" cols="50"><%=@post.body%></textarea>
+  <br><br>
+  <label for="tag">Tag</label>
+  <input type="number" name="tag" min="1" max=<%=Tag.count%> value=<%=@post.tag_id%>>
+  <br><br>
+  <button type="submit">Post!</button>
+</form>

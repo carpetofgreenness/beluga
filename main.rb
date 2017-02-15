@@ -35,6 +35,17 @@ get '/post/:id' do
   erb :post
 end
 
+get '/post/edit/:id' do
+  @post = Post.find(params[:id])
+  erb :edit_post
+end
+
+post "/post/edit/:id" do
+  @post = Post.find(params[:id])
+  @post.update_attributes(url: params[:url], title: params[:title], body: params[:body], tag_id: params[:tag])
+  redirect "/post/#{@post.id}"
+end
+
 get '/profile/:id' do
   @user = User.find(params[:id])
   erb :profile
