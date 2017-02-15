@@ -67,3 +67,37 @@ post "/edit-profile/:id" do
   @user.update_attributes(username: params[:username], email: params[:email], password: params[:password], description: params[:description], pic: params[:pic])
   redirect "/"
 end
+
+
+
+
+
+
+
+# hannah's section
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# david's section
