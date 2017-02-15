@@ -1,7 +1,8 @@
+<%= flash[:notice] if flash[:notice] %>
 <% if session[:user_id] %>
   <h1>Welcome <%=User.find(session[:user_id]).username%> <a href="/sign-out">Sign-Out</a></h1>
 <% else %>
-  <form method="POST" action="/sign-in">
+  <form method="POST" action="/post/new">
     <label for="username">Username</label>
     <input type="text" name="username">
     <label for="password">Password</label>
@@ -9,11 +10,32 @@
     <button type="submit">Go!</button>
   </form>
 <% end %>
-<h1><%=@user.username%>'s Profile Page <a href="/sign-out">Sign-Out</a></h1>
+<h1><%=@user.username%>'s Profile Page</h1>
 <h2>About:</h2>
 <p><strong>Email:</strong> <%=@user.email%></p>
 <p><strong>Description:</strong> <%=@user.description%></p>
 <img src=<%=@user.pic%>>
+
+<% if session[:user_id] && session[:user_id]==@user.id%> 
+	<h2>New Post:</h2>
+	<form method="POST" action="/post/new">
+	  <label for="url">URL</label>
+	  <input type="text" name="url">
+	  <br><br>
+	  <label for="title">Title</label>
+	  <input type="text" name="title">
+	  <br><br>
+	  <label for="body">Body</label>
+	  <textarea name="body" rows="4" cols="50"></textarea>
+	  <br><br>
+	  <label for="tag">Tag</label>
+	  <input type="number" name="tag">
+	  <br><br>
+	  <button type="submit">Post!</button>
+	</form>
+<% end %>
+
+
 <h2>Posts</h2>
 <ul>
 	<% @user.posts.each do |post| %>
@@ -37,4 +59,5 @@
 	<li>List of User's Posts</li>
 	<li>Option to edit posts if signed in</li>
 	<li>Form to create post if signed in</li>
+	<li>Display tag for posts</li>
 </ul>

@@ -24,6 +24,12 @@ post '/sign-in' do
   end
 end
 
+post '/post/new' do
+  @user = User.find(session[:user_id])
+  Post.create(user_id: @user.id, tag_id: params[:tag], url: params[:url], title: params[:title], body: params[:body])
+  redirect "/profile/#{@user.id}"
+end
+
 get '/profile/:id' do
   @user = User.find(params[:id])
   erb :profile
