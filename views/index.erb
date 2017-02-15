@@ -1,57 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Beluga Home</title>
-</head>
-<body>
-  <h1>Home!</h1>
-    <% if session[:user_id] %>
-      <h1>Welcome <%=User.find(session[:user_id]).username%> <a href="/sign-out">Sign-Out</a></h1>
-    <% else %>
-      <form method="POST" action="/sign-in">
-        <label for="username">Username</label>
-        <input type="text" name="username">
-        <label for="password">Password</label>
-        <input type="text" name="password">
-        <button type="submit">Go!</button>
-      </form>
-    <% end %>
+<h1>Home!</h1>
+  <% if session[:user_id] %>
+    <h1>Welcome <%=User.find(session[:user_id]).username%> <a href="/sign-out">Sign-Out</a></h1>
+  <% else %>
+    <form method="POST" action="/sign-in">
+      <label for="username">Username</label>
+      <input type="text" name="username">
+      <label for="password">Password</label>
+      <input type="text" name="password">
+      <button type="submit">Go!</button>
+    </form>
+  <% end %>
 
-  <h2>This page should have</h2>
+<h2>This page should have</h2>
+<ul>
+  <li>Sign-in for if not signed in</li>
+  <li>Link to own profile if signed in</li>
+  <li>"newsfeed"</li>
+  <li>list of users that link to their profiles</li>
+  <li>link to show comments</li>
+  <li>link to create an account</li>
+</ul>
+<hr>
+<ul>
+    <% @users.each do |user| %>
+      <li>
+        Username: <%= user.username%> <a href="/profile/<%=user.id%>">view profile</a>
+        <br>
+        Password: <%= user.password%>
+      </li>
+    <% end %>
+</ul>
+<hr>
   <ul>
-    <li>Sign-in for if not signed in</li>
-    <li>Link to own profile if signed in</li>
-    <li>"newsfeed"</li>
-    <li>list of users that link to their profiles</li>
-    <li>link to show comments</li>
-  </ul>
-  <hr>
-  <ul>
-      <% @users.each do |user| %>
-        <li>
-          Username: <%= user.username%> <a href="/user/delete/<%=user.id%>">Delete</a>
-          <br>
-          Password: <%= user.password%>
-        </li>
-      <% end %>
-  </ul>
-  <hr>
-    <ul>
-      <% @posts.each do |post| %>
-        <li>
-          <a href=<%=post.url%>><h2><%= post.title%></h2></a>
-          <p><strong><%=post.user.username%></strong></p>
-          <p><%=post.body%></p>
-          <ul>
-            <% post.comments.each do |comment| %>
-              <li>
-                <p><strong><%=comment.user.username%></strong></p>
-                <p><%=comment.body%></p>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-      <% end %>
-  </ul>
-</body>
-</html>
+    <% @posts.each do |post| %>
+      <li>
+        <a href=<%=post.url%>><h2><%= post.title%></h2></a>
+        <p><strong><%=post.user.username%></strong></p>
+        <p><%=post.body%></p>
+        <ul>
+          <% post.comments.each do |comment| %>
+            <li>
+              <p><strong><%=comment.user.username%></strong></p>
+              <p><%=comment.body%></p>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+</ul>
