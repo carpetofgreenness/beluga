@@ -81,8 +81,14 @@ get "/users" do
   erb :users
 end
 
+get "/user/new" do
+   erb :user
+end
 
-
+post "/user/new" do
+  @user = User.create(username: params[:username], email: params[:email], password: params[:password], description: params[:description], pic: params[:pic])
+  redirect "/profile/#{@user.id}"
+end
 
 
 
