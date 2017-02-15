@@ -28,3 +28,9 @@ get '/profile/:id' do
   @user = User.find(params[:id])
   erb :profile
 end
+
+get "/sign-out" do
+  session.clear
+  flash[:notice] = "You've successfully signed out!"
+  redirect "/"
+end
