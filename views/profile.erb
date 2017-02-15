@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Beluga Profile</title>
+</head>
+<body>
+	<h1><%=@user.username%>'s Profile Page</h1>
+	<h2>About:</h2>
+	<p><strong>Email:</strong> <%=@user.email%></p>
+	<p><strong>Description:</strong> <%=@user.description%></p>
+	<img src=<%=@user.pic%>>
+	<hr>
+	<h2>This page should have:</h2>
+	<ul>
+		<li>User's Profile Information</li>
+		<li>Link to edit/delete profile if signed in</li>
+		<li>List of User's Posts</li>
+		<li>Option to edit posts if signed in</li>
+		<li>Form to create post if signed in</li>
+	</ul>
+</body>
+</html>
