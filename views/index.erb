@@ -5,14 +5,17 @@
 </head>
 <body>
   <h1>Home!</h1>
-
-    <form method="POST" action="/sign-in">
-      <label for="username">Username</label>
-      <input type="text" name="username">
-      <label for="password">Password</label>
-      <input type="text" name="password">
-      <button type="submit">Go!</button>
-    </form>
+    <% if session[:user_id] %>
+      <h1>Welcome <%=User.find(session[:user_id]).username%></h1>
+    <% else %>
+      <form method="POST" action="/sign-in">
+        <label for="username">Username</label>
+        <input type="text" name="username">
+        <label for="password">Password</label>
+        <input type="text" name="password">
+        <button type="submit">Go!</button>
+      </form>
+    <% end %>
 
   <h2>This page should have</h2>
   <ul>
@@ -37,6 +40,7 @@
       <% @posts.each do |post| %>
         <li>
           <a href=<%=post.url%>><h2><%= post.title%></h2></a>
+          <p><strong><%=post.user.username%></strong></p>
           <p><%=post.body%></p>
           <ul>
             <% post.comments.each do |comment| %>
