@@ -40,3 +40,14 @@ get "/sign-out" do
   flash[:notice] = "You've successfully signed out!"
   redirect "/"
 end
+
+get "/edit-profile/:id" do
+  @user = User.find(session[:user_id])
+  erb :edit_profile
+end
+
+post "/edit-profile/:id" do
+  @user = User.find(session[:user_id])
+  @user.update_attributes(username: params[:username], email: params[:email], password: params[:password], description: params[:description], pic: params[:pic])
+  redirect "/"
+end
