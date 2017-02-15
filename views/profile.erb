@@ -1,15 +1,4 @@
 <%= flash[:notice] if flash[:notice] %>
-<% if session[:user_id] %>
-  <h1>Welcome <%=User.find(session[:user_id]).username%> <a href="/sign-out">Sign-Out</a><a href="/edit-profile/<%=session[:user_id]%>">Edit</a></h1>
-<% else %>
-  <form method="POST" action="/sign-in">
-    <label for="username">Username</label>
-    <input type="text" name="username">
-    <label for="password">Password</label>
-    <input type="text" name="password">
-    <button type="submit">Go!</button>
-  </form>
-<% end %>
 <h1><%=@user.username%>'s Profile Page</h1>
 <h2>About:</h2>
 <p><strong>Email:</strong> <%=@user.email%></p>
@@ -40,6 +29,7 @@
 <ul>
 	<% @user.posts.each do |post| %>
 		<a href=<%=post.url%>><h2><%= post.title%></h2></a>
+		<p><a href="/profile/<%=post.user.id%>"><strong><%=post.user.username%></strong></a></p>
 		<p><%=post.body%></p>
 		<p><strong>Tag: </strong><%=post.tag.name%></p>
       	<ul>

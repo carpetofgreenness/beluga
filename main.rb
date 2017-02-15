@@ -30,6 +30,11 @@ post '/post/new' do
   redirect "/profile/#{@user.id}"
 end
 
+get '/post/:id' do
+  @post = Post.find(params[:id])
+  erb :post
+end
+
 get '/profile/:id' do
   @user = User.find(params[:id])
   erb :profile
