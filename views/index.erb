@@ -42,6 +42,10 @@
               <p><%=comment.body%></p>
             </li>
           <% end %>
+          <form method="post" action="/comment/<%=post.id%>/<%=post.user.id%>/new">
+            <textarea name="body" rows="4" cols="50" Placeholder="Comment"></textarea>
+            <button type="submit">Post!</button>
+          </form>
         </ul>
       </li>
     <% end %>

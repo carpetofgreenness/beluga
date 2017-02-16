@@ -96,9 +96,16 @@ post "/user/:id/delete" do
   redirect "/"
 end
 
+get "/comment/:id" do
+  @comment = Comment.find(params[:id])
+  @user = @comment.user
+  @post = @comment.post
+  erb :comment
+end
 
-
-
+post "/comment/:post_id/:user_id/new" do
+  @comment = Comment.create()
+end
 
 
 
