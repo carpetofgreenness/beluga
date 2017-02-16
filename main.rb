@@ -104,14 +104,26 @@ get "/comment/:id" do
 end
 
 post "/comment/:post_id/:user_id/new" do
-  @comment = Comment.create()
+  @comment = Comment.create(body: params[:body], user_id: params[:user_id], post_id: params[:post_id])
+  redirect "/post/#{params[:post_id]}"
 end
 
+post "/comment/:id/delete" do
+  Comment.find(params[:id]).destroy
+  redirect back
+end
 
+post "/comment/:id/edit" do
+  Comment.find(params[:id]).update(body: params[:body])
+  @post_id=Comment.find(params[:id]).post.id
+  redirect "/post/#{@post_id}"
+end
 
-
-
-
+get "/comment/:comment_id/edit" do
+  @comment = Comment.find(params[:comment_id])
+  @post = @comment.post
+  erb :comment_edit
+end
 
 
 
