@@ -92,6 +92,12 @@ post "/user/:id/delete" do
   redirect "/"
 end
 
+get "/comment/:id" do
+  @comment = Comment.find(params[:id])
+  @user = @comment.user
+  @post = @comment.post
+  erb :comment
+end
 
 #david's section
 
@@ -104,12 +110,22 @@ end
 
 
 
+post "/comment/:id/delete" do
+  Comment.find(params[:id]).destroy
+  redirect back
+end
 
+post "/comment/:id/edit" do
+  Comment.find(params[:id]).update(body: params[:body])
+  @post_id=Comment.find(params[:id]).post.id
+  redirect "/post/#{@post_id}"
+end
 
-
-
-
-
+get "/comment/:comment_id/edit" do
+  @comment = Comment.find(params[:comment_id])
+  @post = @comment.post
+  erb :comment_edit
+end
 
 
 
