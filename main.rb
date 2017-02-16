@@ -159,7 +159,9 @@ get "/comment/:comment_id/edit" do
 end
 
 
-
+get '/tags/' do
+  erb :tags
+end
 
 
 

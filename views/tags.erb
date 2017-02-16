@@ -1,0 +1,12 @@
+<%= flash[:notice] if flash[:notice] %>
+
+
+<h2>Listing of Tags</h2>
+	<ul>
+	 <%  Tag.all.each do |tag| %>
+		<li><%= tag.id.to_s + " " +tag.name %></li>
+	 <% end %>
+	</ul>
+	
+
+
