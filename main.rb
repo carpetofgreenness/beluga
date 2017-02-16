@@ -70,10 +70,6 @@ end
 
 
 
-
-
-
-
 # hannah's section
 
 get "/users" do
@@ -96,6 +92,15 @@ post "/user/:id/delete" do
   redirect "/"
 end
 
+
+#david's section
+
+post "/post/:id/delete" do
+  post = Post.find(params[:id])
+  @user_id = post.user_id
+  post.destroy
+  redirect "/profile/#{@user_id}"
+end
 
 
 
