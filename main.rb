@@ -32,6 +32,7 @@ end
 
 get '/post/:id' do
   @post = Post.find(params[:id])
+  @posts = [@post]
   erb :post
 end
 
@@ -48,6 +49,7 @@ end
 
 get '/profile/:id' do
   @user = User.find(params[:id])
+  @posts = @user.posts
   erb :profile
 end
 
@@ -110,6 +112,7 @@ end
 
 get "/tag/:id" do
   @tag = Tag.find(params[:id])
+  @posts = @tag.posts
   erb :tag
 end
 
