@@ -99,6 +99,15 @@ get "/comment/:id" do
   erb :comment
 end
 
+get "/tag/new" do
+  erb :tag_new
+end
+
+post "/tag/new" do
+  @tag = Tag.create(name: params[:name])
+  redirect "/tag/#{@tag.id}"
+end
+
 get "/tag/:id" do
   @tag = Tag.find(params[:id])
   erb :tag
