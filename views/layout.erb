@@ -5,7 +5,7 @@
 </head>
 <body>
 <% if session[:user_id] %>
-  <h1>Welcome <%=User.find(session[:user_id]).username%> <a href="/sign-out">Sign-Out</a> | <a href="/edit-profile/<%=session[:user_id]%>">Edit Profile</a> | <a href="/profile/<%=session[:user_id]%>">View Profile</a> | <a href="/">Home</a></h1>
+  <h1>Welcome <%=User.find(session[:user_id]).username%> <a href="/sign-out">Sign-Out</a> | <a href="/edit-profile/<%=session[:user_id]%>">Edit Profile</a> | <a href="/profile/<%=session[:user_id]%>">View Profile</a> | <a href="/">Home</a> | <a href="/tags/<%session%>">Tags</a></h1>
 <% else %>
   <form method="POST" action="/sign-in">
     <label for="username">Username</label>
