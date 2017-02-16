@@ -70,10 +70,6 @@ end
 
 
 
-
-
-
-
 # hannah's section
 
 get "/users" do
@@ -103,10 +99,16 @@ get "/comment/:id" do
   erb :comment
 end
 
-post "/comment/:post_id/:user_id/new" do
-  @comment = Comment.create(body: params[:body], user_id: params[:user_id], post_id: params[:post_id])
-  redirect "/post/#{params[:post_id]}"
+#david's section
+
+post "/post/:id/delete" do
+  post = Post.find(params[:id])
+  @user_id = post.user_id
+  post.destroy
+  redirect "/profile/#{@user_id}"
 end
+
+
 
 post "/comment/:id/delete" do
   Comment.find(params[:id]).destroy
