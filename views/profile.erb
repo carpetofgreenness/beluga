@@ -1,31 +1,37 @@
 <%= flash[:notice] if flash[:notice] %>
+
 <h1><%=@user.username%>'s Profile Page</h1>
-<h2>About:</h2>
-<p><strong>Email:</strong> <%=@user.email%></p>
-<p><strong>Description:</strong> <%=@user.description%></p>
+	
+	<h2>About:</h2>
+		<p><strong>Email:</strong> <%=@user.email%></p>
+		<p><strong>Description:</strong> <%=@user.description%></p>
+
 <img src=<%=@user.pic%>>
 
 <% if session[:user_id] && session[:user_id]==@user.id%> 
+	
 	<h2>New Post:</h2>
 	<form method="POST" action="/post/new">
 	  <label for="url">URL</label>
 	  <input type="text" name="url">
-	  <br><br>
+	  	<br><br>
 	  <label for="title">Title</label>
 	  <input type="text" name="title">
-	  <br><br>
+	  	<br><br>
 	  <label for="body">Body</label>
 	  <textarea name="body" rows="4" cols="50"></textarea>
-	  <br><br>
+	  	<br><br>
 	  <label for="tag">Tag</label>
 	  <input type="number" name="tag" min="1" max=<%=Tag.count%>>
-	  <br><br>
+	  	<br><br>
 	  <button type="submit">Post!</button>
 	</form>
+
 <% end %>
 
 
 <h2>Posts</h2>
+
 <ul>
 	<% @user.posts.each do |post| %>
 		<h2><a href=<%=post.url%>><%= post.title%></a> | <a href="/post/<%=post.id%>">Isolate Post</a></h2>
@@ -42,13 +48,15 @@
       	</ul>
 	<% end %>
 </ul>
+
 <hr>
+
 <h2>This page should have:</h2>
-<ul>
-	<li>User's Profile Information</li>
-	<li>Link to edit/delete profile if signed in</li>
-	<li>List of User's Posts</li>
-	<li>Option to edit posts if signed in</li>
-	<li>Form to create post if signed in</li>
-	<li>Display tag for posts</li>
-</ul>
+	<ul>
+		<li>User's Profile Information</li>
+		<li>Link to edit/delete profile if signed in</li>
+		<li>List of User's Posts</li>
+		<li>Option to edit posts if signed in</li>
+		<li>Form to create post if signed in</li>
+		<li>Display tag for posts</li>
+	</ul>
