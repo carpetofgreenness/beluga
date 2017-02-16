@@ -4,7 +4,7 @@ require "sinatra/flash"
 require "./models"
 require "faker"
 
-set :database, "sqlite3:test.sqlite3"
+set :database, "sqlite3:beluga_db.sqlite3"
 enable :sessions
 
 get '/' do
@@ -76,12 +76,25 @@ end
 
 # hannah's section
 
+get "/users" do
+  @users = User.all
+  erb :users
+end
 
+get "/user/new" do
+   erb :user
+end
 
+post "/user/new" do
+  @user = User.create(username: params[:username], email: params[:email], password: params[:password], description: params[:description], pic: params[:pic])
+  redirect "/profile/#{@user.id}"
+end
 
-
-
-
+post "/user/:id/delete" do
+  User.find(params[:id]).destroy
+  session.clear
+  redirect "/"
+end
 
 
 
