@@ -4,7 +4,7 @@ require "sinatra/flash"
 require "./models"
 require "faker"
 
-set :database, "sqlite3:test.sqlite3"
+set :database, "sqlite3:beluga_db.sqlite3"
 enable :sessions
 
 get '/' do
