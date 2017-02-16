@@ -99,6 +99,28 @@ get "/comment/:id" do
   erb :comment
 end
 
+get "/tag/:id" do
+  @tag = Tag.find(params[:id])
+  erb :tag
+end
+
+post "/comment/:post_id/:user_id/new" do
+  @comment = Comment.create()
+  @comment = Comment.create(body: params[:body], user_id: params[:user_id], post_id: params[:post_id])
+  redirect "/post/#{params[:post_id]}"
+end
+
+get "/tag/:id/edit" do
+  @tag = Tag.find(params[:id])
+  erb :tag_edit
+end
+
+post "/tag/:id/edit" do
+  @tag = Tag.find(params[:id])
+  @tag.update(name: params[:name])
+  redirect "/tag/#{@tag.id}"
+end
+
 #david's section
 
 post "/post/:id/delete" do

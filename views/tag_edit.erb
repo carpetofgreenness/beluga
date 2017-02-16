@@ -1,0 +1,8 @@
+<h1>Edit Tag: <%=@tag.name%></h1>
+<form method="post" action="/tag/<%=@tag.id%>/edit">
+	<label for="name">Tag name:</label>
+	<br>
+	<textarea name="name" rows="4" cols="50"><%=@tag.name%></textarea>
+	<br>
+	<button type="submit">Change Tag!</button>
+</form>

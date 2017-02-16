@@ -34,7 +34,7 @@
         <% end %>
 
         <p><%=post.body%></p>
-        <p><strong>Tag: </strong><%=post.tag.name%></p>
+        <a href='/tag/<%=post.tag_id%>'><p><strong>Tag: </strong><%=post.tag.name%></p></a>
         <ul>
           <% post.comments.each do |comment| %>
             <li>
