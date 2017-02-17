@@ -1,16 +1,25 @@
 <%= flash[:notice] if flash[:notice] %>
 
-<h1><%=@user.username%>'s Profile Page</h1>
-	
-	<h2>About:</h2>
-		<p><strong>Email:</strong> <%=@user.email%></p>
-		<p><strong>Description:</strong> <%=@user.description%></p>
+<img src=<%=@user.pic%> class="prof-pic">
 
-<img src=<%=@user.pic%>>
+	<div class="page-header">
+		<h1><%=@user.username%>
+<% if session[:user_id] && session[:user_id]==@user.id %>
+			<small>
+				<form method="post" action="/user/<%=@user.id%>/delete" id="delete-user" style="display: inline-block">
+					<a href="javascript:{}" onclick="document.getElementById('delete-user').submit();">(delete)</a>
+				</form>
+				<a href="/edit-profile/<%=@user.id%>">(edit)</a>
+			</small>
+<% end %>
+		</h1>
+	</div>
+
+<p><strong>Email:</strong> <%=@user.email%></p>
+<p><strong>Description:</strong> <%=@user.description%></p>
 
 <% if session[:user_id] && session[:user_id]==@user.id%> 
 	<br>
-	<form method="post"><button formaction="/user/<%=@user.id%>/delete" type="submit">Delete User</button></form>
 	<!-- <form method="post"><button formaction="/user/<%=@user.id%>/delete" type="submit">Delete User</button></form>
 	<h2>New Post:</h2>
 	<form method="POST" action="/post/new">
