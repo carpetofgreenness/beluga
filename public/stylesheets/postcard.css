@@ -1,0 +1,13 @@
+.post_options {
+	font-size: .5em;
+	font-weight: normal;
+}
+
+img.postcard-pic.img-responsive {
+	border: 3px solid #31708f;
+	border-radius: 10px
+}
+
+.row.post-body {
+	margin-bottom: 1em;
+}

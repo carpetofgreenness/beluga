@@ -11,6 +11,7 @@
 <% if session[:user_id] && session[:user_id]==@user.id%> 
 	<br>
 	<form method="post"><button formaction="/user/<%=@user.id%>/delete" type="submit">Delete User</button></form>
+	<!-- <form method="post"><button formaction="/user/<%=@user.id%>/delete" type="submit">Delete User</button></form>
 	<h2>New Post:</h2>
 	<form method="POST" action="/post/new">
 	  <label for="url">URL</label>
@@ -26,31 +27,13 @@
 	  <input type="number" name="tag" min="1" max=<%=Tag.count%>>
 	  	<br><br>
 	  <button type="submit">Post!</button>
-	</form>
-
+	</form> -->
+	<%= erb :new_post %>
 <% end %>
 
 
 <h2>Posts</h2>
 
-<!-- <ul>
-	<% @user.posts.each do |post| %>
-		<h2><a href=<%=post.url%>><%= post.title%></a> | <a href="/post/<%=post.id%>">Isolate Post</a> | 
-			<form method="post"><button formaction="/post/<%=post.id%>/delete" type="submit">Delete Post</button></form></h2>
-		<p><a href="/profile/<%=post.user.id%>"><strong><%=post.user.username%></strong></a></p>
-		<p><%=post.body%></p>
-		<p><strong>Tag: </strong><%=post.tag.name%></p>
-      	<ul>
-        	<% post.comments.each do |comment| %>
-         		 <li>
-            		<p><strong><%=comment.user.username%></strong></p>
-           			 <p><%=comment.body%></p>
-          		</li>
-        	<% end %>
-      	</ul>
-      	<hr>
-	<% end %>
-</ul> -->
 
 <%= erb :post_card%>
 

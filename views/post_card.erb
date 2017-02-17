@@ -1,36 +1,65 @@
+ <div class="list-group">   
     <% @posts.each do |post| %>
-      <div class="postcard">
-        <h2><a href=<%=post.url%>><%= post.title%></a> | <a href="/post/<%=post.id%>">Isolate Post</a>
-          <% if session[:user_id] && session[:user_id] == post.user.id %>
-           | <form method="post" style="display: inline-block"><button formaction="/post/<%=post.id%>/delete" type="submit">Delete Post</button></form>  | <a href='/post/edit/<%=post.id%>'>Edit Post</a>
-          <% end %>
-        </h2>
+      <div class="postcard list-group-item row">
 
-        <% if post.user %>
-        <p><a href="/profile/<%=post.user.id%>"><strong><%=post.user.username%></strong></a></p>
+            <div class="col-xs-3 col-sm-2 col-lg-1">
+              <img src=<%=post.user.pic%> class="img-responsive postcard-pic">
+            </div>
 
-        <% end %>
+            <div class="col-xs-9 col-sm-10 col-lg-11">
+              <% if post.user %>
+              <p><a href="/profile/<%=post.user.id%>"><strong><%=post.user.username%></strong></a></p>
 
-        <p><%=post.body%></p>
-        <a href='/tag/<%=post.tag_id%>'><p><strong>Tag: </strong><%=post.tag.name%></p></a>
-        <ul>
-          <% post.comments.each do |comment| %>
-            <li>
-              <p><strong><%=comment.user.username%></strong></p>
-              <p><%=comment.body%></p>
-              <% if session[:user_id] && session[:user_id]==comment.user.id%>
-                 <form method="post"><button formaction="/comment/<%=comment.id %>/delete" type="submit">Delete Comment</button></form>
-                 <a href="/comment/<%=comment.id%>/edit"><button>Edit Comment</button></a>
-                 <br>
               <% end %>
-            </li>
-          <% end %>
-          <% if session[:user_id] %>
-            <form method="post" action="/comment/<%=post.id%>/<%=session[:user_id] if session[:user_id]%>/new">
-              <textarea name="body" rows="4" cols="50" Placeholder="Comment"></textarea>
-              <button type="submit">Post!</button>
-            </form>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+              <h2><a href=<%=post.url%>><%= post.title%></a>
+                <span class="post_options">
+                  <a href="/post/<%=post.id%>">(isolate)</a>
+                  <% if session[:user_id] && session[:user_id] == post.user.id %> <!-- checks if user owns post -->
+                   | <form method="post" style="display: inline-block" action="/post/<%=post.id%>/delete" id="my_form">
+                     <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">(delete)</a>
+                   </form>
+                     | <a href='/post/edit/<%=post.id%>'>(edit)</a>
+                  <% end %>
+                </span>
+              </h2>
+              <p><%=post.body%></p>
+              <a href='/tag/<%=post.tag_id%>'><p><strong>Tag: </strong><%=post.tag.name%></p></a>
+
+          <% if post.comments.count > 0 %>
+
+            <div class="well comment-well">
+              <ul class="list-group">
+                <% post.comments.each do |comment| %>
+                  <a class="list-group-item" href="/comment/<%=comment.id%>">
+                    <h5>
+                      <strong><%=comment.user.username%></strong>
+                      <% if session[:user_id] && session[:user_id]==comment.user.id%>
+                         <form method="post" id="comment_form" action="/comment/<%=comment.id %>/delete" style="display: inline-block">
+                            <a href="javascript:{}" onclick="document.getElementById('comment_form').submit();">(delete)</a>
+                         </form>
+                         <a href="/comment/<%=comment.id%>/edit">(edit)</a>
+                         <br>
+                      <% end %> <!-- if session[:user_id] && session[:user_id]==comment.user.id -->
+                    </h5>
+                    <p><%=comment.body%></p>
+                  </a>
+                <% end %> <!-- end looping through comments -->
+                <% if session[:user_id] %>
+                  <li class="list-group-item">
+                    <form method="post" action="/comment/<%=post.id%>/<%=session[:user_id] if session[:user_id]%>/new">
+                      <textarea name="body" rows="4" cols="50" Placeholder="Comment"></textarea>
+                      <button type="submit">Post!</button>
+                    </form>
+                  </li>
+                <% end %> <!-- if session[:user_id], enable commenting -->
+                
+              </ul>
+            </div> <!-- end comment well -->
+            
+            <% end %> <!-- if post has comments -->
+          </div> <!-- end content column -->
+
+
+          </div>
+    <% end %> <!-- cycle through posts -->
+</div>
