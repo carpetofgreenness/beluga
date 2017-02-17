@@ -1,14 +1,1 @@
-<!-- <h2><a href=<%=@post.url%>><%= @post.title%></a><%= " | <a href='/post/edit/#{@post.id}'>Edit Post</a>" if session[:user_id] && session[:user_id] == @post.user_id%></h2>
-<p><a href="/profile/<%=@post.user.id%>"><strong><%=@post.user.username%></strong></a></p>
-<p><%=@post.body%></p>
-<p><strong>Tag: </strong><%=@post.tag.name%></p>
-<ul>
-  <% @post.comments.each do |comment| %>
-    <li>
-      <p><strong><%=comment.user.username%></strong></p>
-      <p><%=comment.body%></p>
-    </li>
-  <% end %>
-</ul> -->
-
 <%= erb :post_card %>
