@@ -2,14 +2,21 @@
 
 <img src=<%=@user.pic%> class="prof-pic">
 
-<h1><%=@user.username%>
-	<form method="post" action="/user/<%=@user.id%>/delete" id="delete-user" style="display: inline-block">
-		<a href="javascript:{}" onclick="document.getElementById('delete-user').submit();">(delete user)</a>
-	</form>
-</h1>
+	<div class="page-header">
+		<h1><%=@user.username%>
+<% if session[:user_id] && session[:user_id]==@user.id %>
+			<small>
+				<form method="post" action="/user/<%=@user.id%>/delete" id="delete-user" style="display: inline-block">
+					<a href="javascript:{}" onclick="document.getElementById('delete-user').submit();">(delete)</a>
+				</form>
+				<a href="/edit-profile/<%=@user.id%>">(edit)</a>
+			</small>
+<% end %>
+		</h1>
+	</div>
+
 <p><strong>Email:</strong> <%=@user.email%></p>
 <p><strong>Description:</strong> <%=@user.description%></p>
-
 
 <% if session[:user_id] && session[:user_id]==@user.id%> 
 	<br>

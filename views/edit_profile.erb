@@ -1,4 +1,5 @@
-<h1>Edit <%=@user.username%>'s Profile</h1>
+<div class="well">
+	<h1>Edit <%=@user.username%>'s Profile</h1>
 	<form method="POST" action="/edit-profile/<%=@user.id%>">
 	  <label for="username">Username</label>
 	  <input type="text" name="username" value=<%=@user.username%>>
@@ -16,4 +17,5 @@
 	  <input type="text" name="pic" value=<%=@user.pic%>>
 	  <br><br>
 	  <button type="submit">Update!</button>
-	</form>
+	</form>	
+</div>
