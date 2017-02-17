@@ -1,16 +1,18 @@
 <%= flash[:notice] if flash[:notice] %>
 
-<h1><%=@user.username%>'s Profile Page</h1>
-	
-	<h2>About:</h2>
-		<p><strong>Email:</strong> <%=@user.email%></p>
-		<p><strong>Description:</strong> <%=@user.description%></p>
+<img src=<%=@user.pic%> class="prof-pic">
 
-<img src=<%=@user.pic%>>
+<h1><%=@user.username%>
+	<form method="post" action="/user/<%=@user.id%>/delete" id="delete-user" style="display: inline-block">
+		<a href="javascript:{}" onclick="document.getElementById('delete-user').submit();">(delete user)</a>
+	</form>
+</h1>
+<p><strong>Email:</strong> <%=@user.email%></p>
+<p><strong>Description:</strong> <%=@user.description%></p>
+
 
 <% if session[:user_id] && session[:user_id]==@user.id%> 
 	<br>
-	<form method="post"><button formaction="/user/<%=@user.id%>/delete" type="submit">Delete User</button></form>
 	<!-- <form method="post"><button formaction="/user/<%=@user.id%>/delete" type="submit">Delete User</button></form>
 	<h2>New Post:</h2>
 	<form method="POST" action="/post/new">
