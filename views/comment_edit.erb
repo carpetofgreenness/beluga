@@ -1,19 +1,74 @@
-<h2><a href=<%=@post.url%>><%= @post.title%></a></h2>
-<p><a href="/profile/<%=@post.user.id%>"><strong><%=@post.user.username%></strong></a></p>
-<p><%=@post.body%></p>
-<p><strong>Tag: </strong><%=@post.tag.name%></p>
-<ul>
-  <% @post.comments.each do |comment| %>
-    <li>
-    	<% if comment.id == @comment.id %>
-			<form method="post" action="/comment/<%=@comment.id%>/edit">
-			  <textarea name="body" rows="4" cols="50" Placeholder="Comment"><%=@comment.body%></textarea>
-			  <button type="submit">Post!</button>
-			</form>
-    	<% else %>
-			<p><strong><%=comment.user.username%></strong></p>
-			<p><%=comment.body%></p>
-       	<% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="postcard list-group-item row">
+
+    <!-- user's pic -->
+    <div class="col-xs-3 col-sm-2 col-lg-1">
+      <img src=<%=@post.user.pic%> class="img-responsive postcard-pic">
+    </div>
+
+    <!-- div that contains content of post -->
+    <div class="col-xs-9 col-sm-10 col-lg-11">
+      <!-- user's name -->
+      <p><a href="/profile/<%=@post.user.id%>"><strong><%=@post.user.username%></strong></a></p>
+      <!-- post title linked with URL -->
+      <h2><a href=<%=@post.url%>><%= @post.title%></a>
+        <span class="post_options">
+          <!-- link to view just the post -->
+          <a href="/post/<%=@post.id%>">(isolate)</a>
+          <!-- checks if user owns post, if yes show delete and edit links -->
+          <% if session[:user_id] && session[:user_id] == @post.user.id %> 
+            <!-- delete link, within a from because it is a post route -->
+           | <form method="post" style="display: inline-block" action="/post/<%=@post.id%>/delete" id="my_form">
+             <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">(delete)</a>
+           </form>
+            <!-- edit link -->
+             | <a href='/post/edit/<%=@post.id%>'>(edit)</a>
+          <% end %>
+        </span>
+      </h2>
+      <!-- display post's body -->
+      <p><%=@post.body%></p>
+      <!-- display and link post's tag -->
+      <a href='/tag/<%=@post.tag_id%>'><p><strong>Tag: </strong><%=@post.tag.name%></p></a>
+
+
+      <div class="well comment-well">
+        <ul class="list-group">
+        <!-- check if post has comments -->
+          <% if @post.comments.count > 0 %>
+            <!-- loop through each comment to display -->
+            <% @post.comments.each do |comment| %>
+              <li class="list-group-item">
+                <!-- check if comment is the one to be edited -->
+                <% if comment.id == @comment.id %>
+                  <form method="post" action="/comment/<%=@post.id%>/<%=session[:user_id] if session[:user_id]%>/new" class="form-inline">
+                    <div class="form-group">
+                      <textarea name="body" rows="4" cols="50" Placeholder="Comment" autofocus><%=@comment.body%></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Post!</button>
+                  </form>
+                <% else %> <!-- else, if it is not the comment being edited  -->
+                  <h5>
+                    <strong><%=comment.user.username%></strong>
+                    <!-- check again if user is logged in to display edit and delete -->
+                    <% if session[:user_id] && session[:user_id]==comment.user.id%>
+                       <form method="post" id="comment_form" action="/comment/<%=comment.id %>/delete" style="display: inline-block">
+                          <a href="javascript:{}" onclick="document.getElementById('comment_form').submit();">(delete)</a>
+                       </form>
+                        <a href="/comment/<%=comment.id%>/edit">(edit)</a>
+                    <% end %> <!-- if session[:user_id] && session[:user_id]==comment.user.id -->
+                  </h5>
+                  <p><%=comment.body%></p>
+                <% end %> <!-- ends the part for non-editing comments -->
+              </li>
+            <% end %> <!-- end looping through comments -->
+            
+        <% end %> <!-- if post has comments -->
+
+
+      </ul>
+    </div> <!-- end comment well -->
+    
+  </div> <!-- end content column -->
+
+
+</div>

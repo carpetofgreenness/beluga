@@ -1,12 +1,6 @@
-<%= flash[:notice] if flash[:notice] %>
-
-
-<h2>Listing of Tags</h2>
-	<ul>
-	 <%  Tag.all.each do |tag| %>
-		<li><%= tag.id.to_s + " " +tag.name %></li>
-	 <% end %>
-	</ul>
-	
-
-
+<h2>All Tags</h2>
+<div class="list-group">
+	<%  Tag.all.each do |tag| %>
+		<li class="list-group-item"><%= tag.name %> <a href="/tag/<%=tag.id%>/edit">(edit)</a></li>
+	<% end %>
+</div>

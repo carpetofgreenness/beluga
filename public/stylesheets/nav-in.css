@@ -1,0 +1,35 @@
+.navbar-brand  {
+	padding: 0;
+}
+
+.navbar-header {
+	min-height: 100px;
+}
+
+.beluga	{	
+	margin: auto;
+	height: 100px;
+	float: left;				
+  	padding: 1px 10px;
+  	font-size: 15px;
+  	line-height: 15px;
+}
+
+.nav.navbar-nav, .nav.navbar-nav>li {
+	min-height: 100px;
+}
+
+.nav.navbar-nav>li>a.nav-link {
+	margin-top: 25px; !important
+}
+
+.nav.navbar-nav>li>a#nav-img-link {
+	margin: 0;
+	padding: 0;
+}
+
+#nav-pic {
+	display: inline-block;
+	height: 75px;
+	margin-top: 0;
+}
