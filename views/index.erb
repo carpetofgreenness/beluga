@@ -1,6 +1,6 @@
 <%= flash[:notice] if flash[:notice] %>
 <!-- <h1>Home!</h1> -->
-<hr>
+<!-- <hr>
 <h2>Users</h2>
 <ul>
     <% @users.each do |user| %>
@@ -10,7 +10,7 @@
         Password: <%= user.password%>
       </li>
     <% end %>
-</ul>
-<hr>
+</ul> -->
+<%= erb :new_post %>
 <h2>All Posts</h2>
 <%= erb :post_card %>

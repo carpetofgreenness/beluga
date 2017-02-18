@@ -1,6 +1,10 @@
-<div class="well">
-	<h2>New Post:</h2>
-	<form method="POST" action="/post/new" id="postform">
+<div class="well row">
+	<div class="col-xs-3 col-sm-2 col-lg-1">
+		<img src=<%=current_user.pic%> class="img-responsive postcard-pic">
+	</div>
+
+	<div class="col-xs-9 col-sm-10 col-lg-11">
+		<form method="POST" action="/post/new" id="postform">
 		<div class="form-group">
 		  <label for="url">URL</label>
 		  <input type="text" name="url" class="form-control">
@@ -25,4 +29,5 @@
 	  	<br><br> -->
 	  <button type="submit">Post!</button>
 	</form>
+	</div>
 </div>

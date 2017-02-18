@@ -4,7 +4,7 @@
 }
 
 img.postcard-pic.img-responsive, .prof-pic {
-	border: 3px solid #31708f;
+	border: 3px solid rgb(51,51,55);
 	border-radius: 10px
 }
 

@@ -3,9 +3,12 @@ require "sinatra/activerecord"
 require "sinatra/flash"
 require "./models"
 require "faker"
+require "date"
 
 set :database, "sqlite3:beluga_db.sqlite3"
 enable :sessions
+
+
 
 get '/' do
   @users = User.all
@@ -14,6 +17,7 @@ get '/' do
 end
 
 post '/sign-in' do
+
   @user = User.where(username: params[:username]).first
   if @user && @user.password == params[:password]
     session[:user_id] = @user.id

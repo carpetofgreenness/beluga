@@ -1,5 +1,12 @@
 .navbar-brand  {
 	padding: 0;
+	font-family: 'Suez One', serif;
+}
+
+.navbar-name {
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 .navbar-header {
@@ -24,12 +31,41 @@
 }
 
 .nav.navbar-nav>li>a#nav-img-link {
-	margin: 0;
+	margin-top: 10px;
 	padding: 0;
+	border-radius: 10px;
 }
 
 #nav-pic {
 	display: inline-block;
 	height: 75px;
-	margin-top: 0;
+	border: 3px solid rgb(51,51,55);
+	border-radius: 10px;
+}
+
+
+body {
+  min-height: 1000px;
+  padding-top: 0px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-color: rgb(133,154,157);
+}
+
+.container {
+	background-color: white;
+	padding: 30px;
+	padding-top: 130px;
+}
+
+nav.navbar.navbar-nav.navbar-fixed-top {
+	background-color: rgb(205,210,212);
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+	background-color: rgb(39,40,43);
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+	background-color: white;
 }

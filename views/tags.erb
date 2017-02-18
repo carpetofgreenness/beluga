@@ -1,6 +1,6 @@
 <h2>All Tags</h2>
 <div class="list-group">
 	<%  Tag.all.each do |tag| %>
-		<li class="list-group-item"><%= tag.name %> <a href="/tag/<%=tag.id%>/edit">(edit)</a></li>
+		<li class="list-group-item"><h3><a href="/tag/<%=tag.id%>"><%= tag.name %></a> <small><a href="/tag/<%=tag.id%>/edit">(edit)</a></small></h3></li>
 	<% end %>
 </div>

@@ -1,24 +1,29 @@
 <%= flash[:notice] if flash[:notice] %>
 
-<img src=<%=@user.pic%> class="prof-pic">
-
-	<div class="page-header">
-		<h1><%=@user.username%>
-<% if session[:user_id] && session[:user_id]==@user.id %>
-			<small>
-				<form method="post" action="/user/<%=@user.id%>/delete" id="delete-user" style="display: inline-block">
-					<a href="javascript:{}" onclick="document.getElementById('delete-user').submit();">(delete)</a>
-				</form>
-				<a href="/edit-profile/<%=@user.id%>">(edit)</a>
-			</small>
-<% end %>
-		</h1>
+<div class="row">
+	<div class="col-sm-6">
+		<img src=<%=@user.pic%> class="prof-pic img-responsive">
 	</div>
+	<div class="col-sm-6 page-header">
+		<h1><%=@user.username%>
+			<% if session[:user_id] && session[:user_id]==@user.id %>
+				<small>
+					<form method="post" action="/user/<%=@user.id%>/delete" id="delete-user" style="display: inline-block">
+						<a href="javascript:{}" onclick="document.getElementById('delete-user').submit();">(delete)</a>
+					</form>
+					<a href="/edit-profile/<%=@user.id%>">(edit)</a>
+				</small>
+			<% end %>
+		</h1>		
+		<p><strong>Email:</strong> <%=@user.email%></p>
+		<p><strong>Description:</strong> <%=@user.description%></p>
+		<p><strong>Last Posted at:</strong> <%=@user.posts.last.created_at%></p>
 
-<p><strong>Email:</strong> <%=@user.email%></p>
-<p><strong>Description:</strong> <%=@user.description%></p>
+	</div>
+	
+</div>
 
-<% if session[:user_id] && session[:user_id]==@user.id%> 
+
 	<br>
 	<!-- <form method="post"><button formaction="/user/<%=@user.id%>/delete" type="submit">Delete User</button></form>
 	<h2>New Post:</h2>
@@ -37,6 +42,7 @@
 	  	<br><br>
 	  <button type="submit">Post!</button>
 	</form> -->
+<% if session[:user_id] && session[:user_id]==@user.id%> 
 	<%= erb :new_post %>
 <% end %>
 
