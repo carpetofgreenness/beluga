@@ -62,10 +62,10 @@ nav.navbar.navbar-nav.navbar-fixed-top {
 	background-color: rgb(205,210,212);
 }
 
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+/*.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
 	background-color: rgb(39,40,43);
 }
-
+*/
 .nav > li > a:hover, .nav > li > a:focus {
 	background-color: white;
 }

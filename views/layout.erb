@@ -17,8 +17,11 @@
 
 <!--NAVBAR CODING-->
 
-
-<%= erb :"nav-logged-in" %>
+<% if session[:user_id] %>
+  <%= erb :"nav-logged-in" %>
+<% else %>
+  <%= erb :"nav-logged-out" %>
+<% end %>
 
 <div class="container">
 
@@ -38,10 +41,15 @@
   </form>
 <% end %>
 
-	<script type="text/javascript" src="/javascript/jquery.js"></script>
-
 
 <%= yield %>
 </div>
+
+    <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/js/post-limiting.js"></script>
 </body>
 </html>
