@@ -1,9 +1,24 @@
 
+
 .beluga	{	
 	margin: auto;
-	height: 50px;
+	height: 100px;
 	float: left;				
   	padding: 1px 10px;
   	font-size: 15px;
   	line-height: 15px;
+}
+.navbar {
+    position: relative;
+    min-height: 100px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+.navbar-inverse	{
+	background-color: #F5F4E8
+}
+
+.navbar-brand	{
+	padding: 0;
 }
