@@ -29,7 +29,7 @@
                 <% post.comments.each do |comment| %>
                   <li class="list-group-item" href="/comment/<%=comment.id%>">
                     <h5>
-                      <strong><%=comment.user.username%></strong>
+                      <strong><a href="/profile/<%=comment.user.id%>"><%=comment.user.username%></a></strong>
                       <% if session[:user_id] && session[:user_id]==comment.user.id%>
                          <form method="post" id="comment_form" action="/comment/<%=comment.id %>/delete" style="display: inline-block">
                             <a href="javascript:{}" onclick="document.getElementById('comment_form').submit();">(delete)</a>

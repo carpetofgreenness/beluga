@@ -1,7 +1,5 @@
 
-<!--NAVBAR CODING-->
-
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-nav navbar-fixed-top">
     <div class="container-fluid">
 
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,20 +12,28 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img class="beluga" alt="Beluga" src="/images/beluga-01.PNG">
+      </a>
+      <a class="navbar-brand navbar-name" href="/">
+        <h1>Beluga</h1>
       </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->    
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-          <li><a href="/sign-out">Sign Out</a></li>
-          <li><a href="/edit-profile/<%=session[:user_id]%>">Edit Profile</a></li>
-          <li><a href="/profile/<%=session[:user_id]%>">View Profile</a></li>
-          <li><a href="/tags/<%session%>">Tags</a></li>
-     </ul>
+      <ul class="nav navbar-nav nav-pills">
+        <li class="active pill"><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></li>
+        <li class="pill"><a href="/tags/<%session%>" class="nav-link">Tags</a></li>
+        <li class="pill"><a href="/user/new" class="nav-link">Sign-up</a></li>
+      </ul>
+      <ul class="nav navbar-nav nav-pills navbar-right">
+        <form method="POST" action="/sign-in" class="navbar-form navbar-right">
+          <input type="text" name="username" class="form-control" placeholder="username">
+          <input type="text" name="password"  class="form-control" placeholder="Password">
+          <button type="submit" class="btn btn-default">Go!</button>
+        </form>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

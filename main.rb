@@ -11,7 +11,7 @@ enable :sessions
 
 
 get '/' do
-  session[:user_id] = 5
+  # session[:user_id] = 5
   @users = User.all
   @posts = Post.all
   erb :index

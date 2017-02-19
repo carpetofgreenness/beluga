@@ -24,21 +24,6 @@
 
 <div class="container">
 
-<% if session[:user_id] %>
-<!--   <h1>Welcome <%=User.find(session[:user_id]).username%></h1>
- -->
-
-<% else %>
-  <form method="POST" action="/sign-in">
-    <label for="username">Username</label>
-    <input type="text" name="username">
-    <label for="password">Password</label>
-    <input type="text" name="password">
-    <button type="submit">Go!</button>
-  </form>
-<% end %>
-
-
 <%= yield %>
 </div>
 

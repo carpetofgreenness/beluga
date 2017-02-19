@@ -12,6 +12,8 @@
     <% end %>
 </ul> -->
 
-<%= erb :new_post %>
+<% if current_user %>
+	<%= erb :new_post %>
+<% end %>
 <h2>All Posts</h2>
 <%= erb :post_card %>
