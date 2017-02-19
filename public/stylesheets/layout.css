@@ -9,7 +9,7 @@
   	line-height: 15px;
 }
 .navbar {
-    position: relative;
+    /*position: relative;*/ /*this was messing up my nav -h*/
     min-height: 100px;
     margin-bottom: 20px;
     border: 1px solid transparent;
