@@ -1,19 +1,26 @@
-<h1>Edit <%=@user.username%>'s Profile</h1>
+<div class="well">
+	<h1>Edit <%=@user.username%>'s Profile</h1>
 	<form method="POST" action="/edit-profile/<%=@user.id%>">
-	  <label for="username">Username</label>
-	  <input type="text" name="username" value=<%=@user.username%>>
-	  <br><br>
-	  <label for="email">Email</label>
-	  <input type="text" name="email" value=<%=@user.email%>>
-	  <br><br>
-	  <label for="password">Password</label>
-	  <input type="text" name="password" value=<%=@user.password%>>
-	  <br><br>
-	  <label for="description">Description</label>
-	  <textarea name="description" rows="4" cols="50"><%=@user.description%></textarea>
-	  <br><br>
-	  <label for="pic">Picture URL</label>
-	  <input type="text" name="pic" value=<%=@user.pic%>>
-	  <br><br>
-	  <button type="submit">Update!</button>
-	</form>
+		<div class="form-group">
+		  <label for="username">Username</label>
+		  <input type="text" name="username" value=<%=@user.username%> class="form-control">
+		</div>
+		<div class="form-group">
+		  <label for="email">Email</label>
+		  <input type="text" name="email" value=<%=@user.email%> class="form-control">			
+		</div>
+		<div class="form-group">
+		  <label for="password">Password</label>
+		  <input type="text" name="password" value=<%=@user.password%> class="form-control">
+		</div>
+		<div class="form-group">
+		  <label for="description">Description</label>
+		  <textarea name="description" rows="4" cols="50" class="form-control"><%=@user.description%></textarea>
+		</div>
+		<div class="form-group">
+		  <label for="pic">Picture URL</label>
+		  <input type="text" name="pic" value=<%=@user.pic%> class="form-control">
+		</div>
+		<button type="submit">Update!</button>
+	</form>	
+</div>

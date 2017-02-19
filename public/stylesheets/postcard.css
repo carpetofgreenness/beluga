@@ -3,7 +3,7 @@
 	font-weight: normal;
 }
 
-img.postcard-pic.img-responsive {
+img.postcard-pic.img-responsive, .prof-pic {
 	border: 3px solid #31708f;
 	border-radius: 10px
 }

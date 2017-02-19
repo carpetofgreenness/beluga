@@ -25,38 +25,40 @@
               <p><%=post.body%></p>
               <a href='/tag/<%=post.tag_id%>'><p><strong>Tag: </strong><%=post.tag.name%></p></a>
 
-          <% if post.comments.count > 0 %>
 
             <div class="well comment-well">
               <ul class="list-group">
+          <% if post.comments.count > 0 %>
                 <% post.comments.each do |comment| %>
-                  <a class="list-group-item" href="/comment/<%=comment.id%>">
+                  <li class="list-group-item" href="/comment/<%=comment.id%>">
                     <h5>
                       <strong><%=comment.user.username%></strong>
                       <% if session[:user_id] && session[:user_id]==comment.user.id%>
                          <form method="post" id="comment_form" action="/comment/<%=comment.id %>/delete" style="display: inline-block">
                             <a href="javascript:{}" onclick="document.getElementById('comment_form').submit();">(delete)</a>
                          </form>
-                         <a href="/comment/<%=comment.id%>/edit">(edit)</a>
-                         <br>
+                          <a href="/comment/<%=comment.id%>/edit">(edit)</a>
                       <% end %> <!-- if session[:user_id] && session[:user_id]==comment.user.id -->
                     </h5>
                     <p><%=comment.body%></p>
-                  </a>
+                  </li>
                 <% end %> <!-- end looping through comments -->
+                
+            <% end %> <!-- if post has comments -->
+
                 <% if session[:user_id] %>
                   <li class="list-group-item">
-                    <form method="post" action="/comment/<%=post.id%>/<%=session[:user_id] if session[:user_id]%>/new">
-                      <textarea name="body" rows="4" cols="50" Placeholder="Comment"></textarea>
-                      <button type="submit">Post!</button>
+                    <form method="post" action="/comment/<%=post.id%>/<%=session[:user_id] if session[:user_id]%>/new" class="form-inline">
+                      <div class="form-group">
+                        <textarea name="body" rows="4" cols="50" Placeholder="Comment"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-default">Post!</button>
                     </form>
                   </li>
                 <% end %> <!-- if session[:user_id], enable commenting -->
-                
               </ul>
             </div> <!-- end comment well -->
             
-            <% end %> <!-- if post has comments -->
           </div> <!-- end content column -->
 
 
