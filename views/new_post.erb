@@ -1,6 +1,10 @@
-<div class="well">
-	<h2>New Post:</h2>
-	<form method="POST" action="/post/new" id="postform">
+<div class="well row">
+	<div class="col-xs-3 col-sm-2 col-lg-1">
+		<img src=<%=current_user.pic%> class="img-responsive postcard-pic">
+	</div>
+
+	<div class="col-xs-9 col-sm-10 col-lg-11">
+		<form method="POST" action="/post/new" id="postform">
 		<div class="form-group">
 		  <label for="url">URL</label>
 		  <input type="text" name="url" class="form-control">
@@ -11,7 +15,7 @@
 		</div>
 		<div class="form-group">
 		  <label for="body">Body</label>
-		  <textarea name="body" rows="4" cols="50" class="form-control"></textarea>
+		  <textarea name="body" rows="3" class="form-control" id="form-body" onkeyup="countChar(this)" maxlength="150"></textarea>
 		</div>
 	  	<div class="form-group">
 		  	<label for="tag">Tag</label>
@@ -20,9 +24,11 @@
 					<option value=<%=tag.id%>><%=tag.name%></option>
 				<% end %>
 			</select>
+			<span>Characters left: <span id="rem-char"></span></span>
 	  	</div>
 <!-- 	  <input type="number" name="tag" min="1" max=<%=Tag.count%>>
 	  	<br><br> -->
 	  <button type="submit">Post!</button>
 	</form>
+	</div>
 </div>

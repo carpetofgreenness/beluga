@@ -8,32 +8,30 @@
   	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/layout.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/postcard.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav-in.css">
+    <link href="https://fonts.googleapis.com/css?family=Suez+One" rel="stylesheet">
 
 </head>
+<body>
 
-
-<%= erb :"nav-logged-out" %>
-
-
+<!--NAVBAR CODING-->
 
 <% if session[:user_id] %>
-  <h1>Welcome <%=User.find(session[:user_id]).username%></h1>
-
-
+  <%= erb :"nav-logged-in" %>
 <% else %>
-  <form method="POST" action="/sign-in">
-    <label for="username">Username</label>
-    <input type="text" name="username">
-    <label for="password">Password</label>
-    <input type="text" name="password">
-    <button type="submit">Go!</button>
-  </form>
+  <%= erb :"nav-logged-out" %>
 <% end %>
 
-	<script type="text/javascript" src="/javascript/jquery.js"></script>
-
+<div class="container">
 
 <%= yield %>
+</div>
 
+    <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/js/post-limiting.js"></script>
 </body>
 </html>

@@ -9,15 +9,15 @@
   	line-height: 15px;
 }
 .navbar {
-    position: relative;
+    /*position: relative;*/ /*this was messing up my nav -h*/
     min-height: 100px;
     margin-bottom: 20px;
     border: 1px solid transparent;
 }
 
-.navbar-inverse	{
+/*.navbar-inverse	{
 	background-color: #F5F4E8
-}
+}*/
 
 .navbar-brand	{
 	padding: 0;

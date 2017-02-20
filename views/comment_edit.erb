@@ -17,11 +17,13 @@
           <!-- checks if user owns post, if yes show delete and edit links -->
           <% if session[:user_id] && session[:user_id] == @post.user.id %> 
             <!-- delete link, within a from because it is a post route -->
-           | <form method="post" style="display: inline-block" action="/post/<%=post.id%>/delete" id="my_form">
+
+           | <form method="post" style="display: inline-block" action="/post/<%=@post.id%>/delete" id="my_form">
              <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">(delete)</a>
            </form>
             <!-- edit link -->
-             | <a href='/post/edit/<%=post.id%>'>(edit)</a>
+             | <a href='/post/edit/<%=@post.id%>'>(edit)</a>
+
           <% end %>
         </span>
       </h2>

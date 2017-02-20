@@ -3,17 +3,22 @@ require "sinatra/activerecord"
 require "sinatra/flash"
 require "./models"
 require "faker"
+require "date"
 
 set :database, "sqlite3:beluga_db.sqlite3"
 enable :sessions
 
+
+
 get '/' do
+  # session[:user_id] = 5
   @users = User.all
   @posts = Post.all
   erb :index
 end
 
 post '/sign-in' do
+
   @user = User.where(username: params[:username]).first
   if @user && @user.password == params[:password]
     session[:user_id] = @user.id
@@ -164,6 +169,10 @@ end
 
 get '/tags/' do
   erb :tags
+end
+
+def current_user
+  User.find(session[:user_id]) if session[:user_id]
 end
 
 
