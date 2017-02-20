@@ -11,3 +11,8 @@ img.postcard-pic.img-responsive, .prof-pic {
 .row.post-body {
 	margin-bottom: 1em;
 }
+
+.beluga-big {
+	display: inline-block;
+	width: 50%;
+}
