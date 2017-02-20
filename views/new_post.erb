@@ -1,34 +1,39 @@
-<div class="well row">
-	<div class="col-xs-3 col-sm-2 col-lg-1">
-		<img src=<%=current_user.pic%> class="img-responsive postcard-pic">
-	</div>
+<% if (current_user.posts.count >0 && current_user.posts.last.elapsed > 24) || current_user.posts.count == 0 %>
+	<div class="well row">
+		<div class="col-xs-3 col-sm-2 col-lg-1">
+			<img src=<%=current_user.pic%> class="img-responsive postcard-pic">
+		</div>
 
-	<div class="col-xs-9 col-sm-10 col-lg-11">
-		<form method="POST" action="/post/new" id="postform">
-		<div class="form-group">
-		  <label for="url">URL</label>
-		  <input type="text" name="url" class="form-control">
+		<div class="col-xs-9 col-sm-10 col-lg-11">
+			<form method="POST" action="/post/new" id="postform">
+			<div class="form-group">
+			  <label for="url">URL</label>
+			  <input type="text" name="url" class="form-control">
+			</div>
+			<div class="form-group">
+			  <label for="title">Title</label>
+			  <input type="text" name="title" class="form-control">
+			</div>
+			<div class="form-group">
+			  <label for="body">Body</label>
+			  <textarea name="body" rows="3" class="form-control" id="form-body" onkeyup="countChar(this)" maxlength="150"></textarea>
+			</div>
+		  	<div class="form-group">
+			  	<label for="tag">Tag</label>
+				<select name="tag" form="postform">
+					<% Tag.all.each do |tag| %>
+						<option value=<%=tag.id%>><%=tag.name%></option>
+					<% end %>
+				</select>
+				<span>Characters left: <span id="rem-char"></span></span>
+		  	</div>
+	<!-- 	  <input type="number" name="tag" min="1" max=<%=Tag.count%>>
+		  	<br><br> -->
+		  <button type="submit">Post!</button>
+		</form>
 		</div>
-		<div class="form-group">
-		  <label for="title">Title</label>
-		  <input type="text" name="title" class="form-control">
-		</div>
-		<div class="form-group">
-		  <label for="body">Body</label>
-		  <textarea name="body" rows="3" class="form-control" id="form-body" onkeyup="countChar(this)" maxlength="150"></textarea>
-		</div>
-	  	<div class="form-group">
-		  	<label for="tag">Tag</label>
-			<select name="tag" form="postform">
-				<% Tag.all.each do |tag| %>
-					<option value=<%=tag.id%>><%=tag.name%></option>
-				<% end %>
-			</select>
-			<span>Characters left: <span id="rem-char"></span></span>
-	  	</div>
-<!-- 	  <input type="number" name="tag" min="1" max=<%=Tag.count%>>
-	  	<br><br> -->
-	  <button type="submit">Post!</button>
-	</form>
 	</div>
-</div>
+<% else %>
+	<h2>Your last post was <%=current_user.posts.last.elapsed.floor%> hours ago. Please wait <%=24-current_user.posts.last.elapsed.floor%> hours until you post again.</h2>
+	<img class="beluga-big" alt="Beluga" src="/images/beluga-01.PNG">
+<% end %>

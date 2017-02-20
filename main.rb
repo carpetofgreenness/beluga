@@ -14,11 +14,14 @@ get '/' do
   # session[:user_id] = 5
   @users = User.all
   @posts = Post.all
+  @home = "active"
+  @tags = ""
+  @profile = ""
+  @signup = ""
   erb :index
 end
 
 post '/sign-in' do
-
   @user = User.where(username: params[:username]).first
   if @user && @user.password == params[:password]
     session[:user_id] = @user.id
@@ -36,12 +39,20 @@ post '/post/new' do
 end
 
 get '/post/:id' do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @post = Post.find(params[:id])
   @posts = [@post]
   erb :post
 end
 
 get '/post/edit/:id' do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @post = Post.find(params[:id])
   erb :edit_post
 end
@@ -53,18 +64,30 @@ post "/post/edit/:id" do
 end
 
 get '/profile/:id' do
+  @home = ""
+  @tags = ""
+  @profile = "active"
+  @signup = ""
   @user = User.find(params[:id])
   @posts = @user.posts
   erb :profile
 end
 
 get "/sign-out" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   session.clear
   flash[:notice] = "You've successfully signed out!"
   redirect "/"
 end
 
 get "/edit-profile/:id" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @user = User.find(session[:user_id])
   erb :edit_profile
 end
@@ -80,15 +103,27 @@ end
 # hannah's section
 
 get "/users" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @users = User.all
   erb :users
 end
 
 get "/user/new" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = "active"
    erb :user
 end
 
 post "/user/new" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @user = User.create(username: params[:username], email: params[:email], password: params[:password], description: params[:description], pic: params[:pic])
   redirect "/profile/#{@user.id}"
 end
@@ -100,6 +135,10 @@ post "/user/:id/delete" do
 end
 
 get "/comment/:id" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @comment = Comment.find(params[:id])
   @user = @comment.user
   @post = @comment.post
@@ -107,6 +146,10 @@ get "/comment/:id" do
 end
 
 get "/tag/new" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   erb :tag_new
 end
 
@@ -116,6 +159,10 @@ post "/tag/new" do
 end
 
 get "/tag/:id" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @tag = Tag.find(params[:id])
   @posts = @tag.posts
   erb :tag
@@ -128,6 +175,10 @@ post "/comment/:post_id/:user_id/new" do
 end
 
 get "/tag/:id/edit" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @tag = Tag.find(params[:id])
   erb :tag_edit
 end
@@ -161,6 +212,10 @@ post "/comment/:id/edit" do
 end
 
 get "/comment/:comment_id/edit" do
+  @home = ""
+  @tags = ""
+  @profile = ""
+  @signup = ""
   @comment = Comment.find(params[:comment_id])
   @post = @comment.post
   erb :comment_edit
@@ -168,6 +223,10 @@ end
 
 
 get '/tags/' do
+  @home = ""
+  @tags = "active"
+  @profile = ""
+  @signup = ""
   erb :tags
 end
 

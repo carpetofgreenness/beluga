@@ -1,3 +1,4 @@
+ <% if @posts %>
  <div class="list-group">   
     <% @posts.each do |post| %>
       <div class="postcard list-group-item row">
@@ -62,3 +63,4 @@
           </div>
     <% end %> <!-- cycle through posts -->
 </div>
+<% end %>

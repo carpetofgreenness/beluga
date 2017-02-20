@@ -17,8 +17,9 @@
 		</h1>		
 		<p><strong>Email:</strong> <%=@user.email%></p>
 		<p><strong>Description:</strong> <%=@user.description%></p>
-		<p><strong>Last Posted at:</strong> <%=@user.posts.last.created_at%></p>
-
+		<% if @user.posts.count >0 %>
+			<p><strong>Last Posted:</strong> <%=@user.posts.last.elapsed.floor%> hours ago</p>
+		<% end %>
 	</div>
 	
 </div>
